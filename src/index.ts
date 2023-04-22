@@ -11,7 +11,6 @@ const USER_AGENT: string = 'merlin'
 const app = express();
 
 const lfm = new lastFM();
-console.log(lfm.getAlbumChart())
 
 // super basic auth requirement. Should be expanded upon.
 app.use('', (req, res, next) => {
@@ -27,7 +26,11 @@ app.get('/info', (req, res, next) => {
   return res.send("this is info")
 });
 
-app.use('/album-chart', (req, res, next) => {
-  return res.send("album chart")
+app.get('/album-chart', (req, res, next) => {
+  const promis1 = Promise.resolve(lfm.getAlbumChart());
+  promis1.then((value) => {
+    return res.json(value)
+  })
+  // return res.json(lfm.getAlbumChart())
 })
-// app.listen(3000)
+app.listen(3000)
