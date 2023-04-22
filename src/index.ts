@@ -1,7 +1,7 @@
 import express from 'express';
-import * as dotenv from 'dotenv';
+import "dotenv/config.js";
+import { lastFM } from './lastfm.ts';
 
-dotenv.config();
 
 const API_KEY: string = process.env.API_KEY!
 const LASTFM_URL: string = "https://ws.audioscrobbler.com/2.0/"
@@ -9,6 +9,9 @@ const USER_AGENT: string = 'merlin'
 
 
 const app = express();
+
+const lfm = new lastFM();
+console.log(lfm.getAlbumChart())
 
 // super basic auth requirement. Should be expanded upon.
 app.use('', (req, res, next) => {
