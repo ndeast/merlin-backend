@@ -32,11 +32,18 @@ app.get('/info', (req, res, next) => {
   return res.send("this is info")
 });
 
-app.get('/album-chart', (req, res, next) => {
-  const promis1 = Promise.resolve(lfm.getAlbumChart());
-  promis1.then((value) => {
+app.get('/top-albums', (req, res, next) => {
+  const chart = Promise.resolve(lfm.getTopAlbums());
+  chart.then((value) => {
+    return res.json(value);
+  })
+})
+
+app.post('/album-info', (req, res, next) => {
+  console.log(req.body)
+  const album = Promise.resolve(lfm.getAlbumInfo(req.body.artist, req.body.album, req.body.mbid));
+  album.then((value) => {
     return res.json(value)
   })
-  // return res.json(lfm.getAlbumChart())
 })
 app.listen(3000)

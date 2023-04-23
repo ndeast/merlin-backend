@@ -1,8 +1,9 @@
 export interface Album {
+  name: string,
   artist: string,
   mbid?: string,
+  image: string
   url: string,
-  name: string,
+  playcount: number,
   rank: number,
-  playcount: number
 }
