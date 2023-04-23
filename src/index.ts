@@ -14,10 +14,10 @@ const corsOptions: cors.CorsOptions = {
 }
 
 const app = express();
-
 const lfm = new lastFM();
 
 app.use(cors(corsOptions));
+
 // super basic auth requirement. Should be expanded upon.
 app.use('', (req, res, next) => {
   if (req.headers.authorization) {
@@ -28,10 +28,10 @@ app.use('', (req, res, next) => {
   })
 
 app.get('/info', (req, res, next) => {
-  console.log('get');
   return res.send("this is info")
 });
 
+// gets a users top 20 albums from the past 7 days
 app.get('/top-albums/:user', async (req, res, next) => {
   const albums = await lfm.getTopAlbums(req.params.user);
   if (albums.length > 0) {
