@@ -32,12 +32,14 @@ app.get('/info', (req, res, next) => {
   return res.send("this is info")
 });
 
-app.get('/top-albums', (req, res, next) => {
-  const chart = Promise.resolve(lfm.getTopAlbums());
-  chart.then((value) => {
-    return res.json(value);
-  })
-})
+app.get('/top-albums', async (req, res, next) => {
+  const albums = await lfm.getTopAlbums();
+  if (albums.length > 0) {
+    res.json(albums)
+  } else {
+    next('Failed to retrieve top albums')
+  }
+});
 
 app.post('/album-info', (req, res, next) => {
   console.log(req.body)
