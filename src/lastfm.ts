@@ -11,7 +11,7 @@ export class lastFM {
     let topAlbums: Album[] = [];
     let queryURL: string = this.LASTFM_URL + '?method=user.gettopalbums&period=7day&limit=20&api_key=' + this.API_KEY 
     + '&format=json'
-    + '&user=' + user
+    + '&user=' + user;
     let query: any;
     
     await fetch(queryURL).then(async (resp) => {
@@ -19,7 +19,7 @@ export class lastFM {
         query = await resp.json();
       } else {
         console.error(resp.status, resp.statusText);
-        throw error("failed to retrieve data from lastfm")
+        throw error("failed to retrieve data from lastfm");
       }
     }).catch((err) => {
       console.error("Error", err);
@@ -36,18 +36,19 @@ export class lastFM {
           playcount: a.playcount,
           rank: a['@attr'].rank
         }
-        topAlbums.push(album)
+        topAlbums.push(album);
       }
     }
     return topAlbums;
   }
   
-  async getAlbumInfo(artist: string, album: string, mbid?: string) {
+  async getAlbumInfo(artist: string, album: string, mbid?: string): Promise<any> {
     let queryURL: string = this.LASTFM_URL + '?method=album.getinfo&api_key=' + this.API_KEY 
       + '&artist=' + artist 
       + '&album=' + album 
-      + '&mbid=' + mbid
-    console.log(queryURL);
+      + '&mbid=' + mbid;
+      
+    return queryURL;
   }
 
 }

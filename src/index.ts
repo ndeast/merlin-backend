@@ -4,9 +4,9 @@ import { lastFM } from './lastfm.ts';
 import cors from 'cors';
 
 
-const API_KEY: string = process.env.API_KEY!
-const LASTFM_URL: string = "https://ws.audioscrobbler.com/2.0/"
-const USER_AGENT: string = 'merlin'
+const API_KEY: string = process.env.API_KEY!;
+const LASTFM_URL: string = "https://ws.audioscrobbler.com/2.0/";
+const USER_AGENT: string = 'merlin';
 
 const allowedOrigins = ['http://localhost:4200']
 const corsOptions: cors.CorsOptions = {
@@ -25,7 +25,7 @@ app.use('', (req, res, next) => {
   } else {
     res.sendStatus(403)
   }
-  })
+});
 
 app.get('/info', (req, res, next) => {
   return res.send("this is info")
@@ -41,11 +41,14 @@ app.get('/top-albums/:user', async (req, res, next) => {
   }
 });
 
-app.post('/album-info', (req, res, next) => {
-  console.log(req.body)
-  const album = Promise.resolve(lfm.getAlbumInfo(req.body.artist, req.body.album, req.body.mbid));
-  album.then((value) => {
-    return res.json(value)
-  })
-})
-app.listen(3000)
+// app.post('/album-info', async (req, res, next) => {
+//   console.log(req.body)
+//   const album = await lfm.getAlbumInfo(req.body.artist, req.body.album, req.body.mbid);
+//   if (album) {
+//     res.json(album)
+//   } else {
+//     next('Failed to retrieve album info')
+//   }
+// });
+
+app.listen(3000);
