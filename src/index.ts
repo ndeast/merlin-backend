@@ -32,8 +32,8 @@ app.get('/info', (req, res, next) => {
   return res.send("this is info")
 });
 
-app.get('/top-albums', async (req, res, next) => {
-  const albums = await lfm.getTopAlbums();
+app.get('/top-albums/:user', async (req, res, next) => {
+  const albums = await lfm.getTopAlbums(req.params.user);
   if (albums.length > 0) {
     res.json(albums)
   } else {

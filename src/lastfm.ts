@@ -7,10 +7,11 @@ export class lastFM {
   API_KEY: string = process.env.API_KEY!;
   LASTFM_URL: string = "https://ws.audioscrobbler.com/2.0/";
     
-  async getTopAlbums(): Promise<Album[]> {
+  async getTopAlbums(user: string): Promise<Album[]> {
     let topAlbums: Album[] = [];
-    let queryURL: string = this.LASTFM_URL + '?method=user.gettopalbums&user=ndeast&period=7day&limit=20&api_key=' + this.API_KEY 
-    + '&format=json';
+    let queryURL: string = this.LASTFM_URL + '?method=user.gettopalbums&period=7day&limit=20&api_key=' + this.API_KEY 
+    + '&format=json'
+    + '&user=' + user
     let query: any;
     
     await fetch(queryURL).then(async (resp) => {
