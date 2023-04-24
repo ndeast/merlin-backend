@@ -1,7 +1,6 @@
 import fetch from 'node-fetch';
-import { Album } from './interfaces/album.interface.ts';
-import { resolve } from 'path';
 import { error } from 'console';
+import { Album } from './interfaces/album.interface.js';
 export class lastFM {
 
   API_KEY: string = process.env.API_KEY!;

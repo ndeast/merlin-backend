@@ -1,7 +1,7 @@
 import express from 'express';
 import "dotenv/config.js";
-import { lastFM } from './lastfm.ts';
 import cors from 'cors';
+import { lastFM } from './lastfm.js';
 
 
 const API_KEY: string = process.env.API_KEY!;
