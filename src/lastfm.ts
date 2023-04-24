@@ -8,7 +8,7 @@ export class lastFM {
     
   async getTopAlbums(user: string): Promise<Album[]> {
     let topAlbums: Album[] = [];
-    let queryURL: string = this.LASTFM_URL + '?method=user.gettopalbums&period=7day&limit=20&api_key=' + this.API_KEY 
+    let queryURL: string = this.LASTFM_URL + '?method=user.gettopalbums&period=7day&limit=28&api_key=' + this.API_KEY 
     + '&format=json'
     + '&user=' + user;
     let query: any;

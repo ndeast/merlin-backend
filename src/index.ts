@@ -2,6 +2,7 @@ import express from 'express';
 import "dotenv/config.js";
 import cors from 'cors';
 import { lastFM } from './lastfm.js';
+import morgan from 'morgan';
 
 
 const API_KEY: string = process.env.API_KEY!;
@@ -17,6 +18,7 @@ const app = express();
 const lfm = new lastFM();
 
 app.use(cors(corsOptions));
+app.use(morgan('combined'))
 
 // super basic auth requirement. Should be expanded upon.
 app.use('', (req, res, next) => {
@@ -28,7 +30,7 @@ app.use('', (req, res, next) => {
 });
 
 app.get('/info', (req, res, next) => {
-  return res.send("this is info")
+  return res.send("this api returns last.fm album data")
 });
 
 // gets a users top 20 albums from the past 7 days
@@ -40,15 +42,5 @@ app.get('/top-albums/:user', async (req, res, next) => {
     next('Failed to retrieve top albums')
   }
 });
-
-// app.post('/album-info', async (req, res, next) => {
-//   console.log(req.body)
-//   const album = await lfm.getAlbumInfo(req.body.artist, req.body.album, req.body.mbid);
-//   if (album) {
-//     res.json(album)
-//   } else {
-//     next('Failed to retrieve album info')
-//   }
-// });
 
 app.listen(3000);
