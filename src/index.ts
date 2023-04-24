@@ -30,17 +30,17 @@ app.use('', (req, res, next) => {
 });
 
 app.get('/info', (req, res, next) => {
-  return res.send("this api returns last.fm album data")
+  return res.status(200).send("this api returns last.fm album data")
 });
 
 // gets a users top 20 albums from the past 7 days
 app.get('/top-albums/:user', async (req, res, next) => {
   const albums = await lfm.getTopAlbums(req.params.user);
   if (albums.length > 0) {
-    res.json(albums)
+    res.status(200).json(albums)
   } else {
     next('Failed to retrieve top albums')
   }
 });
 
-app.listen(3000);
+export default app;
