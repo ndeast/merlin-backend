@@ -9,7 +9,7 @@ const API_KEY: string = process.env.API_KEY!;
 const LASTFM_URL: string = "https://ws.audioscrobbler.com/2.0/";
 const USER_AGENT: string = 'merlin';
 
-const allowedOrigins = ['http://localhost:8080']
+const allowedOrigins = ['http://localhost:8080', 'http://localhost:80', 'http://localhost:4200']
 const corsOptions: cors.CorsOptions = {
   origin: allowedOrigins
 }
