@@ -11,11 +11,11 @@ simple proxy service for the last-fm api written in typescript, and node.js, usi
 - Run `npm i`
 - Run `npm run start:dev`
 
+### Testing
+- Run `npm run build`
+- Run `npm run test`
+
 ### Run with docker
 - clone this repo
 - Run `docker build . -t ndeast/merlin-backend`
 - Run `docker run -p 3000:3000 --env API_KEY=<YOUR_LAST_FM_API_KEY> -d ndeast/merlin-backend`
-
-### Testing
-Run `npm run build`
-Run `npm run test`
