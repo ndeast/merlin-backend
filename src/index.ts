@@ -1,7 +1,7 @@
 import express from 'express';
 import "dotenv/config.js";
 import cors from 'cors';
-import { lastFM } from './lastfm.js';
+import lastFM from './lastfm.js';
 import morgan from 'morgan';
 
 
@@ -15,7 +15,7 @@ const corsOptions: cors.CorsOptions = {
 }
 
 const app = express();
-const lfm = new lastFM();
+const lfm = new lastFM(API_KEY, LASTFM_URL);
 
 app.use(cors(corsOptions));
 app.use(morgan('combined'))
@@ -42,5 +42,4 @@ app.get('/top-albums/:user', async (req, res, next) => {
     next('Failed to retrieve top albums')
   }
 });
-
 export default app;

@@ -5,7 +5,7 @@
     "module": "ESNext",                                /* Specify what module code is generated. */
     "moduleResolution": "nodenext",
     "rootDir": "src",                                    /* Specify the root folder within your source files. */
-    "allowJs": true,                                     /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */
+    "allowJs": false,                                     /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */
     "outDir": "build",                                   /* Specify an output folder for all emitted files. */
     "allowSyntheticDefaultImports": true,
     // "allowImportingTsExtensions": true,
@@ -17,6 +17,7 @@
     "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
+  "exclude": ["build"],
   "ts-node": {
     "esm": true
   }

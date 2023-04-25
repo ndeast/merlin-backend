@@ -1,10 +1,15 @@
 import fetch from 'node-fetch';
 import { error } from 'console';
 import { Album } from './interfaces/album.interface.js';
-export class lastFM {
+export default class lastFM {
 
-  API_KEY: string = process.env.API_KEY!;
-  LASTFM_URL: string = "https://ws.audioscrobbler.com/2.0/";
+  constructor(api_key: string, lastfm_url: string) {
+    this.API_KEY = api_key;
+    this.LASTFM_URL = lastfm_url;
+  }
+
+  API_KEY: string;
+  LASTFM_URL: string;
     
   async getTopAlbums(user: string): Promise<Album[]> {
     let topAlbums: Album[] = [];
